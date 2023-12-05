@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imen.tennis.entities.Image;
 import com.imen.tennis.entities.Stats;
 import com.imen.tennis.entities.WTA_Tour;
 import com.imen.tennis.repos.ImageRepository;
@@ -46,15 +47,46 @@ public class TennisImplServices implements TennisServices {
 	}
 	@Override
 	public void deleteWTA_TourById(Long id) {
-		//WTA_Tour p = getWTA_Tour(id);
+		WTA_Tour p = getWTA_Tour(id);
 		//suuprimer l'image avant de supprimer le produit
 		//try {
 		//Files.delete(Paths.get(System.getProperty("user.home")+"/images/"+p.getImagePath()));
 		//} catch (IOException e) {
 		//e.printStackTrace();
 		//}
+		if (p != null) {
+	        // Iterate over the list of images and delete each one
+	       List<Image> images = p.getImages();
+	        if (images != null) {
+	            for (Image image : images) {
+	                 //delete the image from the database
+	                imageRepository.deleteById(image.getIdImage()); // Assuming Image entity has an id field
+	           }
+	        }
+		
 		tennisRepository.deleteById(id);
-	}
+	}}
+	
+	//@Override
+	//public void deletePlatById(long id) {
+	  //  Plat plat = platRepository.findById(id).orElse(null);
+
+	   // if (plat != null) {
+	        // Iterate over the list of images and delete each one
+	      //  List<Image> images = plat.getImages();
+	      //  if (images != null) {
+	            //for (Image image : images) {
+	                // Delete the image from the database
+	              //  imageRepository.deleteById(image.getIdImage()); // Assuming Image entity has an id field
+	            //}
+	       // }
+
+	        // Finally, delete the Plat
+	    //    platRepository.deleteById(id);
+	  //  }
+	//}
+
+	
 	@Override
 	public WTA_Tour getWTA_Tour(Long id) { return tennisRepository.findById(id).get();
 	}
