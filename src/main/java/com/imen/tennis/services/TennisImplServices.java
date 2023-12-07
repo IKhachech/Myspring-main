@@ -67,24 +67,6 @@ public class TennisImplServices implements TennisServices {
 		tennisRepository.deleteById(id);
 	}}
 	
-	//@Override
-	//public void deletePlatById(long id) {
-	  //  Plat plat = platRepository.findById(id).orElse(null);
-
-	   // if (plat != null) {
-	        // Iterate over the list of images and delete each one
-	      //  List<Image> images = plat.getImages();
-	      //  if (images != null) {
-	            //for (Image image : images) {
-	                // Delete the image from the database
-	              //  imageRepository.deleteById(image.getIdImage()); // Assuming Image entity has an id field
-	            //}
-	       // }
-
-	        // Finally, delete the Plat
-	    //    platRepository.deleteById(id);
-	  //  }
-	//}
 
 	
 	@Override
